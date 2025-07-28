@@ -13,12 +13,12 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     private var question: String = ""
     private var options: [String] = []
     private let reuseIdentifier = "Cell"
-    private var selection: ((String) -> Void)? = nil
+    private var selection: (([String]) -> Void)? = nil
     
     convenience init(
         question: String,
         options: [String],
-        selection: @escaping (String) -> Void
+        selection: @escaping ([String]) -> Void
     ) {
         self.init()
         self.question = question
@@ -42,7 +42,18 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selection?(options[indexPath.row])
+        selection?(selectedOptions())
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.allowsMultipleSelection {
+            selection?(selectedOptions())
+        }
+    }
+    
+    private func selectedOptions() -> [String] {
+        guard let selectedRows = tableView.indexPathsForSelectedRows else { return [] }
+        return selectedRows.map { options[$0.row] }
     }
     
     private func dequeueCell(in tableView: UITableView) -> UITableViewCell {
