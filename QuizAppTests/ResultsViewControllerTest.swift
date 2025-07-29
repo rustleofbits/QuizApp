@@ -22,17 +22,32 @@ class ResultsViewControllerTest: XCTestCase {
         XCTAssertEqual(sut2.tableView.numberOfRows(inSection: 0), 1)
     }
     
-    func test_viewDidLoad_withCorrectAnswer_rendersCorrectAnswerCell() {
-        let sut = makeSUT(answers: [PresentableAnswer(isCorrect: true)])
+    func test_viewDidLoad_withCorrectAnswer_configuresCell() {
+        let answer = makeAnswer(question: "Q1", answer: "A1", isCorrect: true)
+        let sut = makeSUT(answers: [answer])
         let cell = sut.tableView.cell(at: 0) as? CorrectAnswerCell
+        
         XCTAssertNotNil(cell)
+        XCTAssertEqual(cell?.questionLabel.text, "Q1")
+        XCTAssertEqual(cell?.answerLabel.text, "A1")
     }
     
-    func test_viewDidLoad_withWrongAnswer_rendersWrongAnswerCell() {
-        let sut = makeSUT(answers: [PresentableAnswer(isCorrect: false)])
+    func test_viewDidLoad_withWrongAnswer_configuresCell() {
+        let answer = makeAnswer(question: "Q1", answer: "A1", isCorrect: false)
+        let sut = makeSUT(answers: [answer])
         let cell = sut.tableView.cell(at: 0) as? WrongAnswerCell
         XCTAssertNotNil(cell)
+        XCTAssertEqual(cell?.questionLabel.text, "Q1")
+        XCTAssertEqual(cell?.correctAnswerLabel.text, "A1")
     }
+    
+//    func test_viewDidLoad_withWrongAnswer_rendersWrongAnswerQuestionText() {
+//        let answer = makeAnswer(question: "Q1", isCorrect: false)
+//        let sut = makeSUT(answers: [])
+//        let cell = sut.tableView.cell(at: 0) as? WrongAnswerCell
+//        
+//        XCTAssertEqual(cell?.questionLabel.text, "Q1")
+//    }
     
     // MARK: Helpers
     func makeSUT(summary: String = "", answers: [PresentableAnswer] = []) -> ResultsViewController {
@@ -42,6 +57,10 @@ class ResultsViewControllerTest: XCTestCase {
     }
     
     func makeDummyAnswer() -> PresentableAnswer {
-        PresentableAnswer(isCorrect: false)
+        makeAnswer(isCorrect: false)
+    }
+    
+    func makeAnswer(question: String = "", answer: String = "", isCorrect: Bool) -> PresentableAnswer {
+        PresentableAnswer(question: question, answer: answer, isCorrect: isCorrect)
     }
 }
