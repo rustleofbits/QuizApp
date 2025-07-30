@@ -18,12 +18,12 @@ class ResultsViewControllerTest: XCTestCase {
         let sut = makeSUT(answers: [])
         XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 0)
         
-        let sut2 = makeSUT(answers: [makeDummyAnswer()])
+        let sut2 = makeSUT(answers: [makeAnswer()])
         XCTAssertEqual(sut2.tableView.numberOfRows(inSection: 0), 1)
     }
     
     func test_viewDidLoad_withCorrectAnswer_configuresCell() {
-        let answer = makeAnswer(question: "Q1", answer: "A1", isCorrect: true)
+        let answer = makeAnswer(question: "Q1", answer: "A1")
         let sut = makeSUT(answers: [answer])
         let cell = sut.tableView.cell(at: 0) as? CorrectAnswerCell
         
@@ -33,12 +33,13 @@ class ResultsViewControllerTest: XCTestCase {
     }
     
     func test_viewDidLoad_withWrongAnswer_configuresCell() {
-        let answer = makeAnswer(question: "Q1", answer: "A1", isCorrect: false)
+        let answer = makeAnswer(question: "Q1", answer: "A1", wrongAnswer: "Wrong")
         let sut = makeSUT(answers: [answer])
         let cell = sut.tableView.cell(at: 0) as? WrongAnswerCell
         XCTAssertNotNil(cell)
         XCTAssertEqual(cell?.questionLabel.text, "Q1")
         XCTAssertEqual(cell?.correctAnswerLabel.text, "A1")
+        XCTAssertEqual(cell?.wrongAnswerLabel.text, "Wrong")
     }
     
     // MARK: Helpers
@@ -48,11 +49,7 @@ class ResultsViewControllerTest: XCTestCase {
         return sut
     }
     
-    func makeDummyAnswer() -> PresentableAnswer {
-        makeAnswer(isCorrect: false)
-    }
-    
-    func makeAnswer(question: String = "", answer: String = "", wrongAnswer: String? = nil, isCorrect: Bool) -> PresentableAnswer {
-        PresentableAnswer(question: question, answer: answer, isCorrect: isCorrect)
+    func makeAnswer(question: String = "", answer: String = "", wrongAnswer: String? = nil) -> PresentableAnswer {
+        PresentableAnswer(question: question, answer: answer, wrongAnswer: wrongAnswer)
     }
 }
