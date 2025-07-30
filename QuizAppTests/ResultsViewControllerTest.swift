@@ -41,14 +41,6 @@ class ResultsViewControllerTest: XCTestCase {
         XCTAssertEqual(cell?.correctAnswerLabel.text, "A1")
     }
     
-//    func test_viewDidLoad_withWrongAnswer_rendersWrongAnswerQuestionText() {
-//        let answer = makeAnswer(question: "Q1", isCorrect: false)
-//        let sut = makeSUT(answers: [])
-//        let cell = sut.tableView.cell(at: 0) as? WrongAnswerCell
-//        
-//        XCTAssertEqual(cell?.questionLabel.text, "Q1")
-//    }
-    
     // MARK: Helpers
     func makeSUT(summary: String = "", answers: [PresentableAnswer] = []) -> ResultsViewController {
         let sut = ResultsViewController(summary: summary, answers: answers)
@@ -60,7 +52,7 @@ class ResultsViewControllerTest: XCTestCase {
         makeAnswer(isCorrect: false)
     }
     
-    func makeAnswer(question: String = "", answer: String = "", isCorrect: Bool) -> PresentableAnswer {
+    func makeAnswer(question: String = "", answer: String = "", wrongAnswer: String? = nil, isCorrect: Bool) -> PresentableAnswer {
         PresentableAnswer(question: question, answer: answer, isCorrect: isCorrect)
     }
 }
