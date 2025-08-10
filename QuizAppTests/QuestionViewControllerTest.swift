@@ -7,7 +7,6 @@
 
 import XCTest
 @testable import QuizApp
-import QuizEngine
 
 class QuestionViewControllerTest: XCTestCase {
     func test_viewDidLoad_rendersQuestionHeaderText() {
