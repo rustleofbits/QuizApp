@@ -19,6 +19,8 @@
 /* Begin PBXFileReference section */
 		D32E84532E364C9D00D69CA6 /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32E84692E364C9F00D69CA6 /* QuizAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3472D2F2E3F6B7F004699E1 /* QuizEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuizEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3472D332E3F7D2B004699E1 /* QuizEngine_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuizEngine_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -70,6 +72,7 @@
 			children = (
 				D32E84552E364C9D00D69CA6 /* QuizApp */,
 				D32E846C2E364C9F00D69CA6 /* QuizAppTests */,
+				D3472D2E2E3F6B7F004699E1 /* Frameworks */,
 				D32E84542E364C9D00D69CA6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +84,15 @@
 				D32E84692E364C9F00D69CA6 /* QuizAppTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D3472D2E2E3F6B7F004699E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3472D332E3F7D2B004699E1 /* QuizEngine_iOS.framework */,
+				D3472D2F2E3F6B7F004699E1 /* QuizEngine.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
